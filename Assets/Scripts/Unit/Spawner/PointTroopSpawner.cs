@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Core.Movement;
-using System.Net.NetworkInformation;
-using Unity.VisualScripting;
 
 namespace Core.Units
 {
@@ -15,7 +13,6 @@ namespace Core.Units
         [SerializeField] private TroopFactory _troopFactory;
         [SerializeField] private Squad _squadPref;
 
-        private List<Vector2> _spawnPositions;
         public void AddGroupToSpawn(Dictionary<UnitType,int> unitGroup, Owner owner, Transform target)
         {
             StartCoroutine(SpawnGroup(unitGroup,owner,target));
@@ -30,9 +27,7 @@ namespace Core.Units
         }
         IEnumerator SpawnGroup(Dictionary<UnitType, int> unitGroup, Owner owner, Transform target)
         {
-            //var squad = Instantiate(_squadPref,transform);//
-            //_spawnPositions = new List<Vector2>();
-
+            RotatePointToTarget(target);
             foreach (var squads in unitGroup)
             {
                 for (int i = 0; i < squads.Value;)
@@ -44,7 +39,6 @@ namespace Core.Units
                         Unit unit = _troopFactory.Create(squads.Key, owner);
                         unit.transform.position = origin.position;
                         unit.GetComponent<MoveToTarget>().SetShiftTarget(target,transform);
-                        //squad.AddUnit(unit);//
                         i++;
                     }
                     
