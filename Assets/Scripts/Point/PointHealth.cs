@@ -6,23 +6,37 @@ namespace Core.Units
 {
     public class PointHealth : MonoBehaviour, IDamageable, IHealable
     {
-        private int health;
+        private int _health;
         public Action<Owner> Died;
+        [SerializeField] private Point _point;
+
+        public void InitializeHealth(int health)
+        {
+            _health = health;
+        }
         public void ApplyDamage(int damage, Owner from)
         {
             if (damage < 0)
                 return;
-            health -= damage;
-            if (health <= 0)
+
+            if(_point.Owner == from)
             {
-                Died?.Invoke(from);
-                health = 0;
+                ApplyHeal(damage);
+            }
+            else
+            {
+                _health -= damage;
+                if (_health <= 0)
+                {
+                    Died?.Invoke(from);
+                    _health = 0;
+                }
             }
         }
 
-        public void ApplyHeal(int heal, Owner from)
+        public void ApplyHeal(int heal)
         {
-            health += heal;
+            _health += heal;
         }
     }
 }

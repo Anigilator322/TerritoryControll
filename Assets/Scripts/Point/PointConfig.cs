@@ -8,5 +8,8 @@ namespace Core.Units
     {
         private int _health;
         private Owner _owner;
+
+        public int Health => _health;
+        public Owner Owner => _owner;
     }
 }

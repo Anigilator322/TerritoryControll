@@ -5,6 +5,6 @@ namespace Core.Units
 {
     public interface IHealable
     {
-        void ApplyHeal(int heal, Owner from);
+        void ApplyHeal(int heal);
     }
 }

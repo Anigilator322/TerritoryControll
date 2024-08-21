@@ -15,5 +15,9 @@ namespace Core.Units
         {
             _config = config;
         }
+        public UnitConfig GetConfig()
+        {
+            return _config;
+        }
     }
 }

@@ -21,9 +21,10 @@ namespace Core.Units
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
         {
             Point target;
-            eventData.pointerEnter.gameObject.TryGetComponent<Point>(out target);
-            
-            if(target is not null)
+            if (eventData.pointerEnter == null)
+                return;
+            eventData.pointerEnter.gameObject.TryGetComponent(out target);
+            if(target != null)
                 OnDrop?.Invoke(target);
         }
 

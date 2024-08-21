@@ -16,6 +16,7 @@ namespace Core.Units
         [Header("Characteristics")]
         [SerializeField] private int _health;
         [SerializeField] private float _speed;
+        [SerializeField] private int _damage;
         [Header("Components")]
         [SerializeField] private Unit _prefab;
 
@@ -23,5 +24,6 @@ namespace Core.Units
         public int Health => _health;
         public float Speed => _speed;
         public string Name => _name;
+        public int Damage => _damage;
     }
 }

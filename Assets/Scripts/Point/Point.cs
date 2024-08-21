@@ -17,6 +17,7 @@ namespace Core.Units
         [SerializeField] private Owner _owner;
         [SerializeField] private PointView _view;
         [SerializeField] private PointHealth _PointHealth;
+        [SerializeField] private PointConfig _config;
         public Owner Owner => _owner;
     
         public Action _ownerChanged;
@@ -27,6 +28,8 @@ namespace Core.Units
         {
 
             _PointHealth.Died += ChangeOwner;
+            _PointHealth.InitializeHealth(_config.Health);
+            _owner = _config.Owner;
         }
         public void ChangeOwner(Owner owner)
         {
