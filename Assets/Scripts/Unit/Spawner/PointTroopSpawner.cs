@@ -39,6 +39,7 @@ namespace Core.Units
                         Unit unit = _troopFactory.Create(squads.Key, owner);
                         unit.transform.position = origin.position;
                         unit.GetComponent<MoveToTarget>().SetShiftTarget(target,transform);
+                        unit.GetComponent<UnitCollisionFight>().Origin = gameObject.GetComponent<Point>();
                         i++;
                     }
                     

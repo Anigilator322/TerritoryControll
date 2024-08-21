@@ -6,8 +6,8 @@ namespace Core.Units
     [CreateAssetMenu(fileName = "PointConfig", menuName = "Units/PointConfig", order = 1)]
     public class PointConfig : ScriptableObject
     {
-        private int _health;
-        private Owner _owner;
+        [SerializeField] private int _health;
+        [SerializeField] private Owner _owner;
 
         public int Health => _health;
         public Owner Owner => _owner;

@@ -18,7 +18,7 @@ namespace Core.Units
         {
             if (damage < 0)
                 return;
-
+            Debug.Log("Apply damage");
             if(_point.Owner == from)
             {
                 ApplyHeal(damage);

@@ -11,16 +11,18 @@ namespace Core.Units
     }
     public abstract class UnitCollisionFight : MonoBehaviour
     {
-        private bool _isUnitDisposed;
+        private bool _isUnitDisposed = false;
         [SerializeField] private UnitDisposeType _disposeType;
         [SerializeField] private Unit _unit;
         public Action OnUnitDisposed;
-        [SerializeField] private Point _origin;
-        private void OnCollisionEnter2D(Collision2D collision)
+        [HideInInspector] public Point Origin;
+        private void OnTriggerEnter2D(Collider2D collision)
         {
+
             if (_isUnitDisposed)
                 return;
-            if (collision.gameObject == _origin.gameObject)
+            
+            if (collision.gameObject == Origin.gameObject)
                 return;
             if(collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
             {
@@ -31,11 +33,11 @@ namespace Core.Units
                 DisposeUnit();
 
         }
-        protected virtual void OnTargetCollision(Collision2D collision, IDamageable damageable)
+        protected virtual void OnTargetCollision(Collider2D collision, IDamageable damageable)
         {
 
         }
-        protected virtual void OnOtherCollisionEnter(Collision2D collision)
+        protected virtual void OnOtherCollisionEnter(Collider2D collision)
         {
 
         }

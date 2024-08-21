@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitCollisionFight: {fileID: 2517418360822307659}
+  _unit: {fileID: 2754675198846867356}
 --- !u!114 &2517418360822307659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +162,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _disposeType: 1
   _unit: {fileID: 2754675198846867356}
+  _origin: {fileID: 0}

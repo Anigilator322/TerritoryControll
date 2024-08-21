@@ -8,24 +8,42 @@ namespace Core.Units
     {
         public Action<Point> OnDrop;
         public Action<Point> OnDrag;
-
+        //[SerializeField] Point _point;
+        private Point selectedPoint;
         void IDragHandler.OnDrag(PointerEventData eventData)
         {
-            OnDrag?.Invoke(eventData.pointerDrag.gameObject.GetComponent<Point>());
+           
         }
         void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
         {
-
+            if (eventData.pointerEnter == null)
+                return;
+            if (eventData.pointerEnter.gameObject.TryGetComponent<Point>(out Point selected))
+            {
+                if (selected.Owner == Owner.Player)
+                {
+                    selectedPoint = selected;
+                    OnDrag?.Invoke(selected);
+                }
+                else
+                    selectedPoint = null;
+            }
         }
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
         {
+            if (selectedPoint == null)
+                return;
             Point target;
             if (eventData.pointerEnter == null)
                 return;
             eventData.pointerEnter.gameObject.TryGetComponent(out target);
-            if(target != null)
+            if (target != null)
+            {
+                Debug.Log("perform attack");
+                //selectedPoint.GetComponent<PointAttack>().PerformAttack(target);
                 OnDrop?.Invoke(target);
+            }
         }
 
     }
