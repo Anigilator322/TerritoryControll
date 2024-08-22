@@ -1,4 +1,3 @@
-using Core.Point;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,10 +19,13 @@ namespace Core.Units
         [SerializeField] private PointConfig _config;
         public Owner Owner => _owner;
     
-        public Action _ownerChanged;
+        public Action<Owner> _ownerChanged;
 
         
-
+        public PointConfig GetConfig()
+        {
+            return _config;
+        }
         private void Start()
         {
 
@@ -34,7 +36,7 @@ namespace Core.Units
         public void ChangeOwner(Owner owner)
         {
             _owner = owner;
-            _ownerChanged?.Invoke();
+            _ownerChanged?.Invoke(owner);
         }
     }
 }

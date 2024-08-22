@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Core.Movement;
+using System;
 
 namespace Core.Units
 {
@@ -12,6 +13,8 @@ namespace Core.Units
         [SerializeField] private float _spawnDelay = 0;
         [SerializeField] private TroopFactory _troopFactory;
         [SerializeField] private Squad _squadPref;
+
+        public Action<int> TroopSpawned;
 
         public void AddGroupToSpawn(Dictionary<UnitType,int> unitGroup, Owner owner, Transform target)
         {
@@ -24,6 +27,10 @@ namespace Core.Units
 
             float angle = Vector3.SignedAngle(from, to, transform.forward);
             transform.Rotate(0.0f, 0.0f, angle);
+        }
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
         }
         IEnumerator SpawnGroup(Dictionary<UnitType, int> unitGroup, Owner owner, Transform target)
         {
@@ -40,7 +47,10 @@ namespace Core.Units
                         unit.transform.position = origin.position;
                         unit.GetComponent<MoveToTarget>().SetShiftTarget(target,transform);
                         unit.GetComponent<UnitCollisionFight>().Origin = gameObject.GetComponent<Point>();
+           
                         i++;
+
+                        TroopSpawned?.Invoke(1);
                     }
                     
                     yield return new WaitForSeconds(_spawnDelay);

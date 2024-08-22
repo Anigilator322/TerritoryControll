@@ -1,5 +1,4 @@
 using Core.Movement;
-using Core.Point;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +16,8 @@ namespace Core.Units
         }
         public void PerformAttack(Point target)
         {
-            _troopSpawner.AddGroupToSpawn(_troopPool.TroopsPool, _point.Owner, target.transform);
+            _troopSpawner.AddGroupToSpawn(_troopPool.TakeUnits(), _point.Owner, target.transform);
+            
         }
     }
 }

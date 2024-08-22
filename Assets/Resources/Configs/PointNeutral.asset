@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 1
   _owner: 2
+  _generateUnit: 0
+  _generationDelay: 1
+  _isGenerationAllowed: 0
