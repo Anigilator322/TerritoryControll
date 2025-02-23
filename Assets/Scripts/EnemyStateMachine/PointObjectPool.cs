@@ -1,13 +1,10 @@
 using Core.Units;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 namespace Core.Enemy
 {
-    
     public class PointObjectPool : MonoBehaviour
     {
-        
         [SerializeField] public List<Point> Points;
 
         public readonly Point EnemyMainPoint;
