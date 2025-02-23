@@ -20,6 +20,7 @@ namespace Core.Units
         {
             StartCoroutine(SpawnGroup(unitGroup,owner,target));
         }
+
         private void RotatePointToTarget(Transform target)
         {
             Vector3 from = transform.up;
@@ -28,10 +29,12 @@ namespace Core.Units
             float angle = Vector3.SignedAngle(from, to, transform.forward);
             transform.Rotate(0.0f, 0.0f, angle);
         }
+
         private void OnDestroy()
         {
             StopAllCoroutines();
         }
+
         IEnumerator SpawnGroup(Dictionary<UnitType, int> unitGroup, Owner owner, Transform target)
         {
             RotatePointToTarget(target);

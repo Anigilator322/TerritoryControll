@@ -52,5 +52,10 @@ namespace Core.Units
             _health += heal;
             HealApplied?.Invoke(heal);
         }
+
+        public int GetHealth()
+        {
+            return _health;
+        }
     }
 }
