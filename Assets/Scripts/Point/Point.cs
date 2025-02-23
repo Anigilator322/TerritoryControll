@@ -25,8 +25,7 @@ namespace Core.Units
 
         public bool IsGenerationAllowed { get; private set; }
 
-        public Action<Owner> OwnerChanged;
-        public Action<Point, Owner> PointOwnerChanged;
+        public Action<Point> OwnerChanged;
 
         public PointStatus PointStatus;
 
@@ -48,7 +47,7 @@ namespace Core.Units
         {
             _owner = owner;
             IsGenerationAllowed = owner != Owner.Neutral;
-            OwnerChanged?.Invoke(owner);
+            OwnerChanged?.Invoke(this);
         }
     }
 }

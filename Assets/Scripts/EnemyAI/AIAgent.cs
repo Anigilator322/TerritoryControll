@@ -37,6 +37,7 @@ namespace Core.EnemyAI
                 {
                     if (point.PointHealth.Health > target.PointHealth.Health)
                     {
+                        Debug.Log("Valuable target found");
                         return true;
                     }
                 }

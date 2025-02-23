@@ -16,6 +16,8 @@ namespace Core.Units
         }
         public void PerformAttack(Point target)
         {
+            if (_point == target)
+                return;
             _troopSpawner.AddGroupToSpawn(_troopPool.TakeUnits(), _point.Owner, target.transform);
             
         }

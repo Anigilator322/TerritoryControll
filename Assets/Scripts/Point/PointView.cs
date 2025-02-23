@@ -17,9 +17,9 @@ namespace Core.Units
             _point.OwnerChanged += ChangeColor;
         }
 
-        void ChangeColor(Owner owner)
+        void ChangeColor(Point point)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = _pointConsts.GetColor(owner);
+            gameObject.GetComponent<SpriteRenderer>().color = _pointConsts.GetColor(point.Owner);
         }
         void Update()
         {

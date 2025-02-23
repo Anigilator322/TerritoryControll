@@ -1,4 +1,5 @@
 ﻿using Core.Enemy;
+using UnityEngine;
 
 namespace Assets.Scripts.EnemyAI
 {
@@ -20,10 +21,10 @@ namespace Assets.Scripts.EnemyAI
 
             if(_pointObjectPool?.PointsByOwner[Core.Units.Owner.Player]?.Count > 0)
             {
-                target = _pointObjectPool.GetPoinWithMinHealth(Core.Units.Owner.Player);
+                target = _pointObjectPool.GetPointWithMinHealth(Core.Units.Owner.Player);
                 return true;
             }
-
+            Debug.Log("No target found");
             target = null;
             return false;
         }

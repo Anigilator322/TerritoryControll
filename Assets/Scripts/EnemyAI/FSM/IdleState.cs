@@ -7,11 +7,16 @@ namespace Assets.Scripts.EnemyAI.FSM
     {
         public IdleState(AIAgent agent) : base(agent) { }
 
-        private float _thinkingTime = 2.0f;
-        private float _elapsedTime = 0.0f;
-        private bool _isThinking = true;
+        private float _thinkingTime;
+        private float _elapsedTime;
+        private bool _isThinking;
+
         public override void Enter()
         {
+            Debug.Log("Вход в состояние: Idle");
+            _thinkingTime = 5.0f;
+            _elapsedTime = 0.0f;
+            _isThinking = true;
         }
 
         public override void Update()

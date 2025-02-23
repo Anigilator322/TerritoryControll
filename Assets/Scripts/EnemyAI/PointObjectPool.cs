@@ -20,12 +20,6 @@ namespace Core.Enemy
 
         public static PointObjectPool Instance = null;
 
-        public PointObjectPool()
-        {
-            if (Instance == null)
-                Instance = this;
-        }
-
         public void Subscribe(PointSpawner spawner)
         {
             spawner.PointSpawned -= AddPoint;
@@ -33,8 +27,8 @@ namespace Core.Enemy
         }
         public void Subscribe(Point point)
         {
-            point.PointOwnerChanged -= ChangeOwner;
-            point.PointOwnerChanged += ChangeOwner;
+            point.OwnerChanged -= ChangeOwner;
+            point.OwnerChanged += ChangeOwner;
         }
 
         public Point GetPointWithMaxHealth(Owner owner)
@@ -42,12 +36,12 @@ namespace Core.Enemy
             return PointsByOwner[owner].OrderByDescending(p => p.PointHealth.Health).FirstOrDefault();
         }
 
-        public Point GetPoinWithMinHealth(Owner owner)
+        public Point GetPointWithMinHealth(Owner owner)
         {
             return PointsByOwner[owner].OrderBy(p => p.PointHealth.Health).FirstOrDefault();
         }
 
-        void Start()
+        void Awake()
         {
             if (Instance == null)
             { 
@@ -70,13 +64,22 @@ namespace Core.Enemy
 
         private void AddPoint(Point point)
         {
+            bool contains = false;
+            PointsByOwner.Values.ToList().ForEach(
+                p => { if (p.Contains(point)) 
+                { 
+                    contains = true; 
+                    return; 
+                } 
+            });
+            if (contains) return;
             PointsByOwner[point.Owner].Add(point);
         }
 
-        private void ChangeOwner(Point point, Owner owner)
+        private void ChangeOwner(Point point)
         {
-            PointsByOwner[point.Owner].Remove(point);
-            PointsByOwner[owner].Add(point);
+            PointsByOwner.Values.ToList().ForEach(p => p.Remove(point));
+            PointsByOwner[point.Owner].Add(point);            
         }
     }
 }

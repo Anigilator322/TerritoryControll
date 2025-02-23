@@ -10,9 +10,9 @@ namespace Core.Units
         [SerializeField] private bool _isSpawnAllowed;
         //[SerializeField] private UnitType _generateUnit;
 
-        private void SetSpawn(Owner owner)
+        private void SetSpawn(Point point)
         {
-            if (owner == Owner.Neutral)
+            if (point.Owner == Owner.Neutral)
                 _isSpawnAllowed = false;
             else
                 _isSpawnAllowed = true;
