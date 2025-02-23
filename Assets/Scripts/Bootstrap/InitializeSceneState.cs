@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Bootstrap;
+using Assets.Scripts.Point.Spawn;
+using Core.Units;
+using Core.Units.Spawn;
+using UnityEngine;
 
 namespace Core
 {
@@ -11,13 +15,13 @@ namespace Core
 
         public InitializeSceneState(SceneStateMachine sceneStateMachine)
         {
-            
             _sceneStateMachine = sceneStateMachine;
         }
 
-        public void Enter()
+        public void Enter(SceneInitializerArgs args)
         {
             Debug.Log("Enter Initialize");
+            args.SceneInitializer.Initialize();
         }
 
         public void Exit()

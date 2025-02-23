@@ -1,15 +1,19 @@
+using Assets.Scripts.EnemyAI;
 using Assets.Scripts.EnemyAI.FSM;
+using Core.Enemy;
+using Core.Units;
 using UnityEngine;
 namespace Core.EnemyAI
 {
     public class AIAgent : MonoBehaviour
     {
         private AIState currentState;
-
+        private PointObjectPool _pointObjectPool;
         void Start()
         {
             currentState = new IdleState(this);
             currentState.Enter();
+            _pointObjectPool = PointObjectPool.Instance;
         }
 
         void Update()
@@ -26,17 +30,35 @@ namespace Core.EnemyAI
 
         public bool IsValuableToAttack()
         {
-            return false; // Заглушка
+            var aiFindTarget = new AITargetSeeker();
+            if (aiFindTarget.TryToFindTarget(out Units.Point target))
+            {
+                foreach(var point in _pointObjectPool.PointsByOwner[Owner.Enemy])
+                {
+                    if (point.PointHealth.Health > target.PointHealth.Health)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public bool IsOwnBasesUnderAttack()
         {
-            return false; // Заглушка
+            foreach(var point in _pointObjectPool.PointsByOwner[Owner.Enemy])
+            {
+                if (point.PointStatus.IsUnderAttack)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool AttackCompleted()
         {
-            return false; // Заглушка
+            return true;     // Заглушка
         }
 
     }

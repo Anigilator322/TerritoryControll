@@ -13,6 +13,8 @@ namespace Core.Units
         public Action<int> DamageApplied;
         public Action<int> HealApplied;
 
+        public int Health => _health;
+
         [SerializeField] private PointTroopSpawner _troopSpawner;
 
         public void InitializeHealth(int health)

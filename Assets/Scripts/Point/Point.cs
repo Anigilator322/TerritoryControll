@@ -1,3 +1,5 @@
+using Assets.Scripts.Point;
+using Core.Enemy;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,30 +15,40 @@ namespace Core.Units
     [RequireComponent(typeof(PointHealth))]
     public class Point : MonoBehaviour
     {
-        [SerializeField] private Owner _owner;
         [SerializeField] private PointView _view;
-        [SerializeField] private PointHealth _PointHealth;
-        [SerializeField] private PointConfig _config;
-        public Owner Owner => _owner;
-    
-        public Action<Owner> _ownerChanged;
+        [SerializeField] private PointHealth _pointHealth;
+        private Owner _owner;
+        private PointConfig _config;
 
-        
+        public Owner Owner => _owner;
+        public PointHealth PointHealth => _pointHealth;
+
+        public bool IsGenerationAllowed { get; private set; }
+
+        public Action<Owner> OwnerChanged;
+        public Action<Point, Owner> PointOwnerChanged;
+
+        public PointStatus PointStatus;
+
+        public void Initialize(PointConfig config, Owner owner)
+        {
+            PointObjectPool.Instance.Subscribe(this);
+            ChangeOwner(owner);
+            _config = config;
+            _pointHealth.Died += ChangeOwner;
+            _pointHealth.InitializeHealth(_config.Health);
+        }
+
         public PointConfig GetConfig()
         {
             return _config;
         }
-        private void Start()
-        {
 
-            _PointHealth.Died += ChangeOwner;
-            _PointHealth.InitializeHealth(_config.Health);
-            _owner = _config.Owner;
-        }
         public void ChangeOwner(Owner owner)
         {
             _owner = owner;
-            _ownerChanged?.Invoke(owner);
+            IsGenerationAllowed = owner != Owner.Neutral;
+            OwnerChanged?.Invoke(owner);
         }
     }
 }

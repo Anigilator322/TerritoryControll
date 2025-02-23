@@ -12,7 +12,6 @@ namespace Core.Units
         
         [SerializeField] private float _spawnDelay = 0;
         [SerializeField] private TroopFactory _troopFactory;
-        [SerializeField] private Squad _squadPref;
 
         public Action<int> TroopSpawned;
 

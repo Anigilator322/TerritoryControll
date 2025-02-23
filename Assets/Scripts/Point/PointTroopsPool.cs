@@ -45,7 +45,7 @@ namespace Core.Units
         }
         public void AddTroops(int count)
         {
-            ModifyDictionary(_point.GetConfig().generateUnit, count);
+            ModifyDictionary(_point.GetConfig().GenerateUnit, count);
         }
 
         public void RemoveTroops(UnitType type, int count)
@@ -54,7 +54,7 @@ namespace Core.Units
         }
         public void RemoveTroops(int count)
         {
-            ModifyDictionary(_point.GetConfig().generateUnit, -count);
+            ModifyDictionary(_point.GetConfig().GenerateUnit, -count);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Assets.Scripts.Bootstrap;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,13 +18,13 @@ namespace Core
             };
         }
         
-        public void EnterIn<TState>() where TState : ISceneState
+        public void EnterIn<TState>(SceneInitializerArgs args) where TState : ISceneState
         {
             if(_states.TryGetValue(typeof(TState), out ISceneState state))
             {
                 _currentState?.Exit();
                 _currentState = state;
-                _currentState.Enter();
+                _currentState.Enter(args);
             }
         }
         public void AddState(ISceneState state)

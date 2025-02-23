@@ -5,7 +5,7 @@ namespace Core.Units
 {
     public enum UnitType
     {
-        Soldier,
+        Troop,
         Tank,
         Helicopter
     }

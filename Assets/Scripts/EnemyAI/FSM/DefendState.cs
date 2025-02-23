@@ -1,4 +1,5 @@
 ﻿using Core.EnemyAI;
+using Core.Units;
 using UnityEngine;
 
 namespace Assets.Scripts.EnemyAI.FSM
@@ -10,7 +11,18 @@ namespace Assets.Scripts.EnemyAI.FSM
         public override void Enter()
         {
             Debug.Log("Вход в состояние: Defend");
-            // Инициализация защиты: перераспределение юнитов для защиты базы.
+            Core.Units.Point target = null;
+            foreach (var point in _pointObjectPool.PointsByOwner[Owner.Enemy])
+            {
+                if (point.PointStatus.IsUnderAttack)
+                {
+                    target = point;
+                    break;
+                }
+            }
+            if (target == null)
+                return;
+            _pointObjectPool.GetPointWithMaxHealth(Core.Units.Owner.Enemy).GetComponent<PointAttack>().PerformAttack(target);
         }
 
         public override void Update()

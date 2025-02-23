@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Bootstrap;
+using UnityEngine;
 
 namespace Core
 {
@@ -10,10 +11,11 @@ namespace Core
         {
             _sceneStateMachine = stateMachine;
         }
-        public void Enter()
+        public void Enter(SceneInitializerArgs args)
         {
             Debug.Log("Enter Loading");
-            _sceneStateMachine.EnterIn<InitializeSceneState>();
+            _sceneStateMachine.EnterIn<InitializeSceneState>(args);
+            Exit();
         }
 
         public void Exit()

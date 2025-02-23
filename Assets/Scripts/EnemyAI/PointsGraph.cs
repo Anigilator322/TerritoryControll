@@ -22,6 +22,8 @@ namespace Core.Enemy
 
         public PointsGraph(List<Point> points)
         {
+            if (points == null)
+                return;
             InitializeNodes(points);
         }
         private void InitializeNodes(List<Point> points)

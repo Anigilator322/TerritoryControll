@@ -20,8 +20,8 @@ namespace Core.Units
         }
         private void Start()
         {
-            _isSpawnAllowed = _point.GetConfig().IsGenerationAllowed;
-            _point._ownerChanged += SetSpawn;
+            _isSpawnAllowed = _point.IsGenerationAllowed;
+            _point.OwnerChanged += SetSpawn;
             StartCoroutine(GenerateUnitsEnum());
         }
         private void OnDestroy()

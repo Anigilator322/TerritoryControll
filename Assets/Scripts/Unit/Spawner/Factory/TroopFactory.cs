@@ -15,7 +15,7 @@ namespace Core.Units
             {
                 case UnitType.Tank: 
                     return _tank;
-                case UnitType.Soldier: 
+                case UnitType.Troop: 
                     return _soldier;
                 case UnitType.Helicopter:
                     return _helicopter;
