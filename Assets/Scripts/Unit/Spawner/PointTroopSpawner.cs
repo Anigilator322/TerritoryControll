@@ -9,11 +9,15 @@ namespace Core.Units
     public class PointTroopSpawner : MonoBehaviour
     {
         [SerializeField] private List<Transform> _spawnPoints;
-        
         [SerializeField] private float _spawnDelay = 0;
-        [SerializeField] private TroopFactory _troopFactory;
+        private UnitFactory _unitFactory;
 
         public Action<int> TroopSpawned;
+
+        private void Start()
+        {
+            gameObject.AddComponent(typeof(SoldierFactory));
+        }
 
         public void AddGroupToSpawn(Dictionary<UnitType,int> unitGroup, Owner owner, Transform target)
         {
@@ -45,7 +49,7 @@ namespace Core.Units
                     {
                         if (i >= squads.Value)
                             break;
-                        Unit unit = _troopFactory.Create(squads.Key, owner);
+                        Unit unit = _unitFactory.Create(owner);
                         unit.transform.position = origin.position;
                         unit.GetComponent<MoveToTarget>().SetShiftTarget(target,transform);
                         unit.GetComponent<UnitCollisionFight>().Origin = gameObject.GetComponent<Point>();

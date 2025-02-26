@@ -441,8 +441,9 @@ MonoBehaviour:
   - {fileID: 6887112308396908143}
   - {fileID: 5346684406976341931}
   - {fileID: 166741444421799699}
+  _config: {fileID: 11400000, guid: 132ea14d1e062ac44b27811147d46e81, type: 2}
   _spawnDelay: 0.5
-  _troopFactory: {fileID: -7890873494438154134}
+  _unitFactory: {fileID: -7890873494438154134}
 --- !u!114 &-7890873494438154134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,9 +456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab34d84d5fb36e640af635f794dce7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soldier: {fileID: 11400000, guid: 132ea14d1e062ac44b27811147d46e81, type: 2}
-  _tank: {fileID: 0}
-  _helicopter: {fileID: 0}
 --- !u!50 &9009464448790705654
 Rigidbody2D:
   serializedVersion: 4

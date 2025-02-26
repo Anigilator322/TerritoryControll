@@ -13,6 +13,7 @@ namespace Core.Units
     public class UnitConfig: ScriptableObject
     {
         [SerializeField] private string _name;
+        [SerializeField] private UnitType _type;
         [Header("Characteristics")]
         [SerializeField] private int _health;
         [SerializeField] private float _speed;
@@ -21,6 +22,7 @@ namespace Core.Units
         [SerializeField] private Unit _prefab;
 
         public Unit Prefab => _prefab;
+        public UnitType Type => _type;
         public int Health => _health;
         public float Speed => _speed;
         public string Name => _name;
