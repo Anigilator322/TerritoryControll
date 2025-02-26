@@ -13,7 +13,7 @@ namespace Core.EnemyAI
         {
             currentState = new IdleState(this);
             currentState.Enter();
-            _pointObjectPool = PointObjectPool.Instance;
+            _pointObjectPool = PointObjectPool.Instance();
         }
 
         void Update()

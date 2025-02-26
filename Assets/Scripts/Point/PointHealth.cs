@@ -12,6 +12,7 @@ namespace Core.Units
 
         public Action<int> DamageApplied;
         public Action<int> HealApplied;
+        public Action<int> HealthChanged;
 
         public int Health => _health;
 
@@ -21,10 +22,13 @@ namespace Core.Units
         {
             _health = health;
         }
+
         private void Start()
         {
+            _troopSpawner.TroopSpawned -= ReduceHealth;
             _troopSpawner.TroopSpawned += ReduceHealth;
         }
+
         public void ApplyDamage(int damage, Owner from)
         {
             if (damage < 0)
@@ -37,7 +41,7 @@ namespace Core.Units
             else
             {
                 _health -= damage;
-                DamageApplied?.Invoke(damage);
+                OnDamageApplied(damage);
                 if (_health <= 0)
                 {
                     Died?.Invoke(from);
@@ -45,19 +49,33 @@ namespace Core.Units
                 }
             }
         }
+
         private void ReduceHealth(int count)
         {
             _health -= count;
         }
+
         public void ApplyHeal(int heal)
         {
             _health += heal;
-            HealApplied?.Invoke(heal);
+            OnHealApplied(heal);
         }
 
-        public int GetHealth()
+        private void OnDamageApplied(int damage)
         {
-            return _health;
+            DamageApplied?.Invoke(damage);
+            OnHealthChanged();
+        }
+
+        private void OnHealApplied(int heal)
+        {
+            HealApplied?.Invoke(heal);
+            OnHealthChanged();
+        }
+
+        private void OnHealthChanged()
+        {
+            HealthChanged?.Invoke(_health);
         }
     }
 }

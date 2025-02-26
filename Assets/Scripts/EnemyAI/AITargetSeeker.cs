@@ -8,7 +8,7 @@ namespace Assets.Scripts.EnemyAI
         private PointObjectPool _pointObjectPool;
         public AITargetSeeker()
         {
-            _pointObjectPool = PointObjectPool.Instance;
+            _pointObjectPool = PointObjectPool.Instance();
         }
 
         public bool TryToFindTarget(out Core.Units.Point target)

@@ -31,7 +31,7 @@ namespace Core.Units
 
         public void Initialize(PointConfig config, Owner owner)
         {
-            PointObjectPool.Instance.Subscribe(this);
+            PointObjectPool.Instance().Subscribe(this);
             ChangeOwner(owner);
             _config = config;
             _pointHealth.Died += ChangeOwner;

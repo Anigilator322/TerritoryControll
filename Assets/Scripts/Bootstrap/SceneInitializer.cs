@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Point.Spawn;
+using Core.Enemy;
 using Core.Points.Spawn;
 using Core.Units;
 using Core.Units.Spawn;
@@ -21,17 +22,11 @@ namespace Assets.Scripts.Bootstrap
                 switch(pointSpawnPosition.UnitType)
                 {
                     case UnitType.Troop:
-                        factory = new TroopPointSpawner(PointSpawnConfig);
-                        factory.SpawnPoint(pointSpawnPosition.Owner,pointSpawnPosition.transform);
-                        break;
-                    case UnitType.Tank:
-                        
-                        break;
-                    case UnitType.Helicopter:
-                        
+                        factory = new TroopPointSpawner(PointSpawnConfig.PointPrefab, PointSpawnConfig.TroopPoint);
+                        factory.SpawnPoint(pointSpawnPosition.Owner, pointSpawnPosition.transform);
                         break;
                     default:
-                        factory = new TroopPointSpawner(PointSpawnConfig);
+                        factory = new TroopPointSpawner(PointSpawnConfig.PointPrefab, PointSpawnConfig.TroopPoint);
                         factory.SpawnPoint(pointSpawnPosition.Owner, pointSpawnPosition.transform);
                         break;
                 }

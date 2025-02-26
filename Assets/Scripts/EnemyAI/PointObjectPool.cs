@@ -2,11 +2,9 @@ using Core.Points.Spawn;
 using Core.Units;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine;
 namespace Core.Enemy
 {
-    public class PointObjectPool : MonoBehaviour
+    public class PointObjectPool
     {
         public Dictionary<Owner, List<Point>> PointsByOwner { get; private set; } = new Dictionary<Owner, List<Point>>()
         {
@@ -18,7 +16,7 @@ namespace Core.Enemy
         //public readonly Point PlayerMainPoint;
         //public PointsGraph Graph;
 
-        public static PointObjectPool Instance = null;
+        public static PointObjectPool _Instance = null;
 
         public void Subscribe(PointSpawner spawner)
         {
@@ -41,20 +39,17 @@ namespace Core.Enemy
             return PointsByOwner[owner].OrderBy(p => p.PointHealth.Health).FirstOrDefault();
         }
 
-        void Awake()
+        public static PointObjectPool Instance()
         {
-            if (Instance == null)
-            { 
-                Instance = this; 
+            if (_Instance == null)
+            {
+                _Instance = new PointObjectPool();
             }
-            else if (Instance == this)
-            { 
-                Destroy(gameObject); 
-            }
+            return _Instance;
+        }
 
-            
-            DontDestroyOnLoad(gameObject);
-
+        private PointObjectPool()
+        {
             Initialize();
         }
 

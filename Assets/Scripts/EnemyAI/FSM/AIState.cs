@@ -11,7 +11,7 @@ namespace Assets.Scripts.EnemyAI.FSM
         public AIState(AIAgent agent)
         {
             _agent = agent;
-            _pointObjectPool = PointObjectPool.Instance;
+            _pointObjectPool = PointObjectPool.Instance();
         }
 
         public abstract void Enter();
