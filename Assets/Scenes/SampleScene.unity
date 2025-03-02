@@ -605,7 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Owner: 1
-  UnitType: 0
+  UnitType: 1
 --- !u!4 &652570891
 Transform:
   m_ObjectHideFlags: 0

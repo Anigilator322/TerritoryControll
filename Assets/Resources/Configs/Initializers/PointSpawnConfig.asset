@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointPrefab: {fileID: 9215286723002154505, guid: 826b406d9488b73498b4fefaf174d3ff, type: 3}
   TroopPoint: {fileID: 11400000, guid: a2072282e2dbf91478bb9fae30b6afcf, type: 2}
-  TankPoint: {fileID: 0}
+  TankPoint: {fileID: 11400000, guid: 4463c1b966f03594789608dac3da40ea, type: 2}
   HeliPoint: {fileID: 0}

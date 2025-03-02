@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d7e961cad41f548a16aef64b670e54, type: 3}
   m_Name: TankPoint
   m_EditorClassIdentifier: 
-  Health: 0
-  GenerateUnit: 0
-  GenerationDelay: 0
+  Health: 1
+  GenerateUnit: 1
+  GenerationDelay: 1
