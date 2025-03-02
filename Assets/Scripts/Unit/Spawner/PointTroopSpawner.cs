@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Core.Movement;
 using System;
+using Assets.Scripts.Unit.Spawner.Factory;
 
 namespace Core.Units
 {
@@ -16,7 +17,20 @@ namespace Core.Units
 
         private void Start()
         {
-            gameObject.AddComponent(typeof(SoldierFactory));
+            var unit = GetComponent<Point>();
+            switch(unit.GetConfig().GenerateUnit)
+            {
+                case UnitType.Troop:
+                    gameObject.AddComponent(typeof(SoldierFactory));
+                    break;
+                case UnitType.Tank:
+                    gameObject.AddComponent(typeof(TankFactory));
+                    break;
+                default:
+                    gameObject.AddComponent(typeof(SoldierFactory));
+                    break;
+            }
+            _unitFactory = GetComponent<UnitFactory>();
         }
 
         public void AddGroupToSpawn(Dictionary<UnitType,int> unitGroup, Owner owner, Transform target)

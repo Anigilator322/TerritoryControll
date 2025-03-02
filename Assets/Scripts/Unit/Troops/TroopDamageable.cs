@@ -7,6 +7,7 @@ namespace Core.Units
     {
         [SerializeField] private UnitCollisionFight _unitCollisionFight;
         [SerializeField] private Unit _unit;
+
         public void ApplyDamage(int damage, Owner from)
         {
             if (from == _unit.Owner)

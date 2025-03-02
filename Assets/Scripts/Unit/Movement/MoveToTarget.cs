@@ -7,7 +7,8 @@ namespace Core.Movement
     public class MoveToTarget : UnitMovement
     {
         [SerializeField] private Vector2 _target;
-        [SerializeField] private UnitConfig _config;
+        [SerializeField] private Unit _unit;
+        private UnitConfig _config => _unit.GetConfig();
 
         protected override void Move()
         {

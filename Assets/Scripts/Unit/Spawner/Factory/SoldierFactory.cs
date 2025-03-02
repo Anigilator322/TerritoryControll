@@ -7,7 +7,7 @@ namespace Core.Units
     {
         protected override UnitConfig GetConfig() 
         {
-            var config = Resources.Load<UnitConfig>("Assets/Resources/Configs/Unit/Soldier");
+            var config = Resources.Load<UnitConfig>("Configs/Unit/Soldier");
 
             if (config == null)
             {

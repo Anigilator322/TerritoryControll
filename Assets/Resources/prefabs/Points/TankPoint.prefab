@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: -4911662810238713423}
   - component: {fileID: 2579943627975668287}
   m_Layer: 0
-  m_Name: Point
+  m_Name: TankPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

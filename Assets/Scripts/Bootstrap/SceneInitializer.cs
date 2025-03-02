@@ -25,6 +25,10 @@ namespace Assets.Scripts.Bootstrap
                         factory = new TroopPointSpawner(PointSpawnConfig.PointPrefab, PointSpawnConfig.TroopPoint);
                         factory.SpawnPoint(pointSpawnPosition.Owner, pointSpawnPosition.transform);
                         break;
+                    case UnitType.Tank:
+                        factory = new TroopPointSpawner(PointSpawnConfig.PointPrefab, PointSpawnConfig.TankPoint);
+                        factory.SpawnPoint(pointSpawnPosition.Owner, pointSpawnPosition.transform);
+                        break;
                     default:
                         factory = new TroopPointSpawner(PointSpawnConfig.PointPrefab, PointSpawnConfig.TroopPoint);
                         factory.SpawnPoint(pointSpawnPosition.Owner, pointSpawnPosition.transform);
