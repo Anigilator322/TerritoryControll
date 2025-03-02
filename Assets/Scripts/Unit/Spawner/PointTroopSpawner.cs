@@ -17,8 +17,8 @@ namespace Core.Units
 
         private void Start()
         {
-            var unit = GetComponent<Point>();
-            switch(unit.GetConfig().GenerateUnit)
+            var productingPoint = GetComponent<Point>();
+            switch(productingPoint.GetConfig().GenerateUnit)
             {
                 case UnitType.Troop:
                     gameObject.AddComponent(typeof(SoldierFactory));
