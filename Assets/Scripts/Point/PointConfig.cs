@@ -8,6 +8,7 @@ namespace Core.Units
     {
         public int Health;
         public UnitType GenerateUnit;
+        public UnitConfig GeneratingUnitConfig;
         public float GenerationDelay;
     }
 }

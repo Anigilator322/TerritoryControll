@@ -3,23 +3,20 @@ using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 namespace Core.Units {
-    public abstract class UnitFactory : MonoBehaviour
+    public class UnitFactory : MonoBehaviour
     {
 
-        public virtual Unit Create(Owner owner)
+        public Unit Create(Owner owner, UnitConfig config)
         {
-            var unit = FactoryInstantiate(GetConfig().Prefab);
-            unit.Initialize(GetConfig(), owner);
+            var unit = FactoryInstantiate(config.Prefab);
+            unit.Initialize(config, owner);
             return unit;
         }
 
-        protected virtual Unit FactoryInstantiate(Unit prefab)
+        protected Unit FactoryInstantiate(Unit prefab)
         {
             var instance = Instantiate(prefab, transform.position, Quaternion.identity);
             return instance;
         }
-
-        protected abstract UnitConfig GetConfig();
-
     }
 }

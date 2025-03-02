@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Core.Movement;
 using System;
-using Assets.Scripts.Unit.Spawner.Factory;
+using System.Runtime.CompilerServices;
 
 namespace Core.Units
 {
@@ -15,21 +15,11 @@ namespace Core.Units
 
         public Action<int> TroopSpawned;
 
+        private Point _producingPoint;
         private void Start()
         {
-            var productingPoint = GetComponent<Point>();
-            switch(productingPoint.GetConfig().GenerateUnit)
-            {
-                case UnitType.Troop:
-                    gameObject.AddComponent(typeof(SoldierFactory));
-                    break;
-                case UnitType.Tank:
-                    gameObject.AddComponent(typeof(TankFactory));
-                    break;
-                default:
-                    gameObject.AddComponent(typeof(SoldierFactory));
-                    break;
-            }
+            _producingPoint = GetComponent<Point>();
+            gameObject.AddComponent(typeof(UnitFactory));
             _unitFactory = GetComponent<UnitFactory>();
         }
 
@@ -63,7 +53,7 @@ namespace Core.Units
                     {
                         if (i >= squads.Value)
                             break;
-                        Unit unit = _unitFactory.Create(owner);
+                        Unit unit = _unitFactory.Create(owner, _producingPoint.GetConfig().GeneratingUnitConfig);
                         unit.transform.position = origin.position;
                         unit.GetComponent<MoveToTarget>().SetShiftTarget(target,transform);
                         unit.GetComponent<UnitCollisionFight>().Origin = gameObject.GetComponent<Point>();
